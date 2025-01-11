@@ -5,7 +5,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-midnight text-white px-6 py-4 font-poppins">
+    <nav className="bg-midnight fixed left-0 right-0 z-50 max-w-screen-xl mx-auto text-white px-6 py-4 font-poppins">
       <div className=" flex items-center justify-between">
         {/* Logo */}
         <motion.a
