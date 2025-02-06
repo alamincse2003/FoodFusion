@@ -9,7 +9,7 @@ import "@smastrom/react-rating/style.css";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 
 import "./Testimonial.css";
 import SectionTitle from "../../../../components/SectionTitle";
@@ -26,7 +26,17 @@ const Testimonial = () => {
         heading="Testimonials"
         subHeading="What Our Client Say"
       ></SectionTitle>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper
+        navigation={true}
+        modules={[Navigation, Autoplay]}
+        className="mySwiper"
+        slidesPerView={1}
+       
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+      >
         {reviews?.map((review) => (
           <SwiperSlide key={review._id}>
             <div className="bg-white shadow-lg p-6 md:p-8 rounded-lg">
