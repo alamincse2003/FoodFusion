@@ -4,7 +4,50 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navLinks = (
+    <>
+      <motion.li
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 1 },
+        }}
+        whileTap={{ scale: 0.5 }}
+        className="hover:text-electricBlue cursor-pointer"
+      >
+        <Link to="/">Home</Link>
+      </motion.li>
+      <motion.li
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 1 },
+        }}
+        whileTap={{ scale: 0.5 }}
+        className="hover:text-electricBlue cursor-pointer"
+      >
+        <Link to="/menu"> Our Menu </Link>
+      </motion.li>
+      <motion.li
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 1 },
+        }}
+        whileTap={{ scale: 0.5 }}
+        className="hover:text-electricBlue cursor-pointer"
+      >
+        <Link to="/order/salad"> Order Food </Link>
+      </motion.li>
+      <motion.li
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 1 },
+        }}
+        whileTap={{ scale: 0.5 }}
+        className="hover:text-electricBlue cursor-pointer"
+      >
+        <Link to="/login"> Login </Link>
+      </motion.li>
+    </>
+  );
   return (
     <nav className="bg-midnight fixed left-0 right-0 z-50 max-w-screen-xl mx-auto text-white px-6 py-4 font-poppins">
       <div className=" flex items-center justify-between">
@@ -23,48 +66,7 @@ const Navbar = () => {
         </motion.div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 font-medium">
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            <Link to="/">Home</Link>
-          </motion.li>
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            <Link to="/menu">Our Menu</Link>
-          </motion.li>
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            Contact
-          </motion.li>
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            Products
-          </motion.li>
-        </ul>
+        <ul className="hidden md:flex space-x-8 font-medium">{navLinks}</ul>
 
         {/* Mobile Toggle Button */}
 
@@ -89,48 +91,7 @@ const Navbar = () => {
           isOpen ? "block" : "hidden"
         } transition-all duration-500`}
       >
-        <ul className="flex flex-col space-y-4 text-center py-4">
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            <Link to="/">Home</Link>
-          </motion.li>
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            <Link to="/menu">Our Menu</Link>
-          </motion.li>
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            Products
-          </motion.li>
-          <motion.li
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            whileTap={{ scale: 0.5 }}
-            className="hover:text-electricBlue cursor-pointer"
-          >
-            Contact
-          </motion.li>
-        </ul>
+        <ul className="flex flex-col space-y-4 text-center py-4">{navLinks}</ul>
       </motion.div>
     </nav>
   );

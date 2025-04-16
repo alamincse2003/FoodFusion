@@ -16,7 +16,7 @@ import SectionTitle from "../../../../components/SectionTitle";
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:3000/reviews")
       .then((response) => response.json())
       .then((data) => setReviews(data));
   }, []);
@@ -31,7 +31,6 @@ const Testimonial = () => {
         modules={[Navigation, Autoplay]}
         className="mySwiper"
         slidesPerView={1}
-       
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,

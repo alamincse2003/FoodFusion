@@ -11,12 +11,12 @@ import SectionTitle from "../../../components/SectionTitle";
 import MenuCategory from "../MenuCategory/MenuCategory";
 const Menu = () => {
   const [menu] = useMenu();
-  const salads = menu.filter((item) => item.category === "salad");
-  const drinks = menu.filter((item) => item.category === "drinks");
-  const offereds = menu.filter((item) => item.category === "offered");
   const desserts = menu.filter((item) => item.category === "dessert");
-  const soups = menu.filter((item) => item.category === "soup");
-  const pizzas = menu.filter((item) => item.category === "pizza");
+  const soup = menu.filter((item) => item.category === "soup");
+  const salad = menu.filter((item) => item.category === "salad");
+  const pizza = menu.filter((item) => item.category === "pizza");
+  const offered = menu.filter((item) => item.category === "offered");
+  const drinks = menu.filter((item) => item.category === "drinks");
 
   return (
     <>
@@ -28,28 +28,17 @@ const Menu = () => {
         heading="Today Offer"
         subHeading="Don't Miss"
       ></SectionTitle>
-      <MenuCategory items={offereds}></MenuCategory>
+      {/* <MenuCategory title="offered" items={offered}></MenuCategory>
+      <MenuCategory items={drinks}></MenuCategory> */}
+
       <MenuCategory
         items={desserts}
-        title={"Desserts"}
+        title="dessert"
         img={dessertImg}
       ></MenuCategory>
-      <MenuCategory
-        items={pizzas}
-        title={"Pizzas"}
-        img={pizzaImg}
-      ></MenuCategory>
-      <MenuCategory
-        items={salads}
-        title={"Salad"}
-        img={saladImg}
-      ></MenuCategory>
-      <MenuCategory
-        items={soups}
-        title={"Soups"}
-        img={soupImg}
-      ></MenuCategory>
-      
+      <MenuCategory items={pizza} title={"pizza"} img={pizzaImg}></MenuCategory>
+      <MenuCategory items={salad} title={"salad"} img={saladImg}></MenuCategory>
+      <MenuCategory items={soup} title={"soup"} img={soupImg}></MenuCategory>
     </>
   );
 };
