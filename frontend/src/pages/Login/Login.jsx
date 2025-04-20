@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { AuthContext } from "../../providers/AuthProviders";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -17,6 +27,20 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      Swal.fire({
+        title: "User Login Successful.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      navigate(from, { replace: true });
+    });
   };
 
   const handleValidateCaptcha = (e) => {
@@ -30,7 +54,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Login</title>
+        <title>FoodFusion | Login</title>
       </Helmet>
       <div className="min-h-screen    flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200 px-4">
         <div className="w-full max-w-md bg-white p-8 lg:mt-14 mt-20 lg:mb-0 mb-5 rounded-xl shadow-lg">
@@ -96,10 +120,10 @@ const Login = () => {
             </button>
           </form>
           <p className="mt-6 text-center text-sm text-gray-600">
-            Don't have an account?{" "}
-            <a href="#" className="text-orange-500 hover:underline">
+            Don't have an account?
+            <Link to="/singup" className="text-orange-500 hover:underline">
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>

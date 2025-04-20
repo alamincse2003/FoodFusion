@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
+
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   const navLinks = (
     <>
@@ -44,8 +57,50 @@ const Navbar = () => {
         whileTap={{ scale: 0.5 }}
         className="hover:text-electricBlue cursor-pointer"
       >
-        <Link to="/login"> Login </Link>
+        <Link to="/secret"> Secret </Link>
       </motion.li>
+      <motion.li
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 1 },
+        }}
+        whileTap={{ scale: 0.5 }}
+        className="hover:text-electricBlue cursor-pointer"
+      >
+        <Link to="/dashboard/cart" className="inline-block">
+          <button className="relative flex items-center px-4 py-2  text-white rounded-md hover:bg-orange-600 transition duration-300">
+            <FaShoppingCart className="mr-2 text-lg" />
+
+            <span className="absolute -top-2 -right-2 bg-red-600 text-xs font-bold text-white rounded-full px-2 py-0.5">
+              +{cart.length}
+            </span>
+          </button>
+        </Link>
+      </motion.li>
+      {user ? (
+        <>
+          {/* <span>{user?.displayName}</span> */}
+          <button
+            onClick={handleLogOut}
+            className="px-4 py-1 rounded-md text-white bg-red-500 hover:bg-red-600 transition duration-300 font-medium shadow-md"
+          >
+            Log Out
+          </button>
+        </>
+      ) : (
+        <>
+          <motion.li
+            whileHover={{
+              scale: 1.2,
+              transition: { duration: 1 },
+            }}
+            whileTap={{ scale: 0.5 }}
+            className="hover:text-electricBlue cursor-pointer"
+          >
+            <Link to="/login"> Login </Link>
+          </motion.li>
+        </>
+      )}
     </>
   );
   return (
